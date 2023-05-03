@@ -23,7 +23,6 @@ name = "bulletproof_example"
 version = "0.1.0"
 dependencies = [
  "bulletproofs",
- "curve25519-dalek",
  "curve25519-dalek-ng 4.1.1",
  "merlin 3.0.0",
  "rand 0.8.5",
@@ -85,19 +84,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3e4c1eaa2012c47becbbad2ab175484c2a84d1185b566fb2cc5b8707343dfe58"
 dependencies = [
  "libc",
-]
-
-[[package]]
-name = "curve25519-dalek"
-version = "3.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "90f9d052967f590a76e62eb387bd0bbb1b000182c3cefe5364db6b7211651bc0"
-dependencies = [
- "byteorder",
- "digest",
- "rand_core 0.5.1",
- "subtle",
- "zeroize",
 ]
 
 [[package]]
