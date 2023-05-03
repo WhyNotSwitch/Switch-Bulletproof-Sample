@@ -1,13 +1,11 @@
-extern crate rand;
+
 use rand::thread_rng;
-
-extern crate merlin;
 use merlin::Transcript;
-
-extern crate bulletproofs;
 use bulletproofs::{BulletproofGens, PedersenGens, RangeProof};
+use ws_sdk::{log};
 
-fn main() {
+#[no_mangle]
+pub extern "C" fn start() {
     // Generators for Pedersen commitments.  These can be selected
     // independently of the Bulletproofs generators.
     let pc_gens = PedersenGens::default();
@@ -37,6 +35,8 @@ fn main() {
         32,
     ).expect("A real program could handle errors");
 
+    log::log_info(format!("{:?}", proof).as_str()).unwrap();
+
     // Verification requires a transcript with identical initial state:
     let mut verifier_transcript = Transcript::new(b"doctest example");
     assert!(
@@ -44,4 +44,6 @@ fn main() {
             .verify_single(&bp_gens, &pc_gens, &mut verifier_transcript, &committed_value, 32)
             .is_ok()
     );
+
+    log::log_info(format!("Success in verifying proof").as_str()).unwrap();
 }
