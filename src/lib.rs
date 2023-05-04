@@ -6,7 +6,7 @@ use curve25519_dalek_ng::scalar::Scalar;
 use ws_sdk::{log};
 
 #[no_mangle]
-pub extern "C" fn start() {
+pub extern "C" fn start(_resource_id: i32) -> i32 {
     // Generators for Pedersen commitments.  These can be selected
     // independently of the Bulletproofs generators.
     let pc_gens = PedersenGens::default();
@@ -47,4 +47,5 @@ pub extern "C" fn start() {
     );
 
     log::log_info(format!("Success in verifying proof").as_str()).unwrap();
+    return 0;
 }
