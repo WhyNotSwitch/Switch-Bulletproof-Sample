@@ -2,6 +2,7 @@
 use rand::thread_rng;
 use merlin::Transcript;
 use bulletproofs::{BulletproofGens, PedersenGens, RangeProof};
+use curve25519_dalek_ng::scalar::Scalar;
 use ws_sdk::{log};
 
 #[no_mangle]
@@ -19,7 +20,7 @@ pub extern "C" fn start() {
 
     // The API takes a blinding factor for the commitment.
     let mut rng = thread_rng();
-    let blinding = curve25519_dalek_ng::scalar::Scalar::random(&mut rng);
+    let blinding = Scalar::random(&mut rng);
 
     // The proof can be chained to an existing transcript.
     // Here we create a transcript with a doctest domain separator.
